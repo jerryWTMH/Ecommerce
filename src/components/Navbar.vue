@@ -11,3 +11,23 @@
         </nav>
     </div>
 </template>
+
+<script>
+export default {
+  name:"navbar",
+  methods: {
+    signOut() {
+      const api = `${process.env.APIPATH}/logout`;
+      const self = this;
+      this.$http.post(api).then(response => {
+        console.log(response.data);
+        if (response.data.success) {
+          self.$router.push("/login");
+        }else{
+          console.log('請重新登入')
+        }
+      });
+    }
+  }
+}
+</script>
